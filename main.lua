@@ -1,35 +1,32 @@
 -- Import scripts.
 local Terrain = require("src.terrain")
-local Button = require("src.button")
+
+local MapUI = require("src.ui.mapUI")
 --------------------------------------
 
-_G.gameAsssets = {
-    fonts = {
-        genericFont = love.graphics.newFont(15)
-    },
-    graphics = {
-        terrain_image = love.graphics.newImage("assets/terrain.png")
-    }
-}
-
-_G.gameCamera = {
-    x = 0,
-    y = 0,
-    windowWidth = love.graphics.getWidth(),
-    windowHeight = love.graphics.getHeight(),
-    border = 10
-}
-
-_G.gameObjects = {
-    Terrain()
-}
-
-_G.gameInterface = {
-    Button("AAAAAA", 32, 32)
-}
-
 function love.load()
-
+    _G.gameAsssets = {
+        fonts = {
+            genericFont = love.graphics.newFont(15)
+        },
+        graphics = {
+            terrain_image = love.graphics.newImage("assets/terrain.png")
+        }
+    }
+    
+    _G.gameCamera = {
+        x = 0,
+        y = 0,
+        winWidth = love.graphics.getWidth(),
+        winHeight = love.graphics.getHeight(),
+        border = 10
+    }
+    
+    _G.gameObjects = {
+        Terrain()
+    }
+    
+    _G.mapUI = MapUI()
 end
 
 function love.update(dt)
@@ -38,10 +35,8 @@ function love.update(dt)
         object:update(dt)
     end
 
-    -- Update interface.
-    for i, object in pairs(_G.gameInterface) do
-        object:update(dt)
-    end
+    -- Update UI.
+    _G.mapUI:update(dt)
 end
 
 function love.draw()
@@ -52,8 +47,11 @@ function love.draw()
         end
     love.graphics.pop()
 
-    -- Render interface.
-    for i, object in pairs(_G.gameInterface) do
-        object:draw()
-    end
+    -- Render UI.
+    _G.mapUI:draw()
+end
+
+function love.mousepressed(x, y, button, istouch, presses)
+    -- Update UI mouse actions.
+    _G.mapUI:mousepressed(x, y, button, istouch, presses)
 end

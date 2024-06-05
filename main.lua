@@ -3,6 +3,15 @@ local Terrain = require("src.terrain")
 local Button = require("src.button")
 --------------------------------------
 
+_G.gameAsssets = {
+    fonts = {
+        genericFont = love.graphics.newFont(15)
+    },
+    graphics = {
+        terrain_image = love.graphics.newImage("assets/terrain.png")
+    }
+}
+
 _G.gameCamera = {
     x = 0,
     y = 0,
@@ -11,18 +20,12 @@ _G.gameCamera = {
     border = 10
 }
 
-_G.gameAsssets = {
-    graphics = {
-        terrain_image = love.graphics.newImage("assets/terrain.png")
-    }
-}
-
 _G.gameObjects = {
     Terrain()
 }
 
 _G.gameInterface = {
-    Button("Zoom", 0, 0, 32, 32)
+    Button("AAAAAA", 32, 32)
 }
 
 function love.load()

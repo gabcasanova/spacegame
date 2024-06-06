@@ -5,6 +5,10 @@ local MapUI = require("src.ui.mapUI")
 --------------------------------------
 
 function love.load()
+    -- Disable engine filtering.
+    love.graphics.setDefaultFilter("nearest", "nearest")
+
+    -- Load game assets.
     _G.gameAsssets = {
         fonts = {
             genericFont = love.graphics.newFont(15)
@@ -14,9 +18,11 @@ function love.load()
         }
     }
     
-    _G.gameCamera = {
+    -- Setup map camera.
+    _G.mapCamera = {
         x = 0,
         y = 0,
+        scale = 1,
         winWidth = love.graphics.getWidth(),
         winHeight = love.graphics.getHeight(),
         border = 10
@@ -30,8 +36,9 @@ function love.load()
 end
 
 function love.update(dt)
-    _G.gameCamera.winWidth = love.graphics.getWidth()
-    _G.gameCamera.winHeight = love.graphics.getHeight()
+    -- Update the window size.
+    _G.mapCamera.winWidth = love.graphics.getWidth()
+    _G.mapCamera.winHeight = love.graphics.getHeight()
 
     -- Update game objects.
     for i, object in pairs(_G.gameObjects) do
@@ -43,8 +50,10 @@ function love.update(dt)
 end
 
 function love.draw()
-    -- Render game.
+    -- Render map.
     love.graphics.push("all")
+        love.graphics.scale(_G.mapCamera.scale, _G.mapCamera.scale)
+
         for i, object in pairs(_G.gameObjects) do
             object:draw()
         end

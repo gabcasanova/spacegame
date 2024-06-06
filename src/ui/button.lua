@@ -1,17 +1,17 @@
 -- Context: 
--- Base for creating buttons by extending 
--- this class.
+-- Base for creating buttons by extending this class.
+-----------------------------------------------------
 
 -- Import libraries.
 local Object = require("libs.classic")
 
 -- Import scripts.
 local handyCode = require("src.handyCode")
---------------------------------------------
+-----------------------------------------------------
 
 Button = Object:extend()
 
-function Button:new(string, x, y)
+function Button:new(string, x, y, color)
     self.x, self.y = x, y
 
     -- Create text.
@@ -23,9 +23,14 @@ function Button:new(string, x, y)
     self.textH = self.text:getHeight()
 
     -- Look and feel.
-    self.bgColor = {179/255, 179/255, 179/255}
-    self.darkFact = 0.7
+    if not (color == nil) then
+        self.bgColor = color
+    else
+        self.bgColor = {0.7, 0.7, 0.7}
+    end
+    self.darkFact = 0.7 -- Make a darker variation of the chosen color for when the mouse is above the button.
     self.darkBgColor = {self.bgColor[1]*self.darkFact, self.bgColor[2]*self.darkFact, self.bgColor[3]*self.darkFact}
+
     self.border = 5
     self.w = self.textW + self.border*2
     self.h = self.textH + self.border*2
@@ -72,8 +77,22 @@ function Button:draw()
     love.graphics.pop()
 end
 
-function Button:mousepressed(x, y, button, istouch, presses)
-    --
+function Button:leftAction()
+    -- This is where left button mouse action code shall go.
 end
 
+function Button:rightAction()
+    -- This is where left button mouse action code shall go.
+end
+
+function Button:mousepressed(x, y, button, istouch, presses)
+    -- Check if the mouse is above the button.
+    if (self.isHovered) then
+        if (button == 1) then -- Left button action.
+            self:leftAction()
+        elseif (button == 2) then -- Right button action
+            self:rightAction()
+        end
+    end
+end
 return Button

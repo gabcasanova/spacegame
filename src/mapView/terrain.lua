@@ -12,12 +12,10 @@ function Terrain:new()
 end
 
 function Terrain:update(dt)
-    
+    --
 end
 
 function Terrain:draw()
-    
-
     love.graphics.draw(self.image, self.x, self.y)
 end
 

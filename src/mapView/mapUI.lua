@@ -28,7 +28,6 @@ function MapUI:new()
         local MapView = _G.currentScene
 
         MapView.camera.scale = MapView.camera.scale + 0.5
-        print("aaa")
     end
 
     -- Zoom out button.
@@ -55,6 +54,16 @@ function MapUI:draw()
     -- Draw buttons.
     for index, btn in pairs(self.buttons) do
         btn:draw()
+    end
+
+    -- Draw debug information.
+    local mX, mY = love.mouse.getPosition()
+    if (_G.debug) then
+        love.graphics.print(
+            "DEBUG INFORMATION: \n\n" ..
+            "Mouse X: " .. mX .. "\n" ..
+            "Mouse Y: " .. mY .. "\n", 
+        10, 10)
     end
 end
 

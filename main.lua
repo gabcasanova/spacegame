@@ -3,8 +3,10 @@ local MapView = require("src.mapView.mapView")
 ----------------------------------------------
 
 function love.load()
-    -- Disable engine filtering.
+    -- Set game variables.
     love.graphics.setDefaultFilter("nearest", "nearest")
+    _G.debug = true
+    love.mouse.setGrabbed(true)
 
     -- Load game assets.
     _G.gameAsssets = {
@@ -33,4 +35,11 @@ end
 function love.mousepressed(x, y, button, istouch, presses)
     -- Update current mouse actions.
     _G.currentScene:mousepressed(x, y, button, istouch, presses)
+end
+
+function love.keypressed(key, scancode, isrepeat)
+    -- Quit game.
+    if (key == "escape") then
+        love.event.quit()
+    end
 end

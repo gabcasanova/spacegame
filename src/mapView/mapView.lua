@@ -33,6 +33,25 @@ end
 function MapView:update(dt)
     self.terrain:update(dt)
     self.ui:update(dt)
+
+    -- Edge scrolling.
+    local edgeBorder = 10
+    local edgeAmount = 300
+    local mX, mY = love.mouse.getPosition()
+
+    if (love.window.hasFocus() and love.mouse.isGrabbed()) then
+        if (mX <= edgeBorder) then -- Horizontal edge scrolling.
+            self.camera.x = self.camera.x + edgeAmount * dt
+        elseif (mX >= self.camera.winWidth - edgeBorder) then
+            self.camera.x = self.camera.x - edgeAmount * dt
+        end
+            
+        if (mY <= edgeBorder) then -- Vertical edge Scrolling
+            self.camera.y = self.camera.y + edgeAmount * dt
+        elseif (mY >= self.camera.winHeight - edgeBorder) then
+            self.camera.y = self.camera.y - edgeAmount * dt
+        end 
+    end
 end
 
 function MapView:draw()

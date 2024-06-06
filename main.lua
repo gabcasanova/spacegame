@@ -30,6 +30,9 @@ function love.load()
 end
 
 function love.update(dt)
+    _G.gameCamera.winWidth = love.graphics.getWidth()
+    _G.gameCamera.winHeight = love.graphics.getHeight()
+
     -- Update game objects.
     for i, object in pairs(_G.gameObjects) do
         object:update(dt)

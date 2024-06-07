@@ -16,6 +16,9 @@ function MapView:new()
     -- Set the scene name.
     self.sceneName = "MapView"
 
+    -- Grab mouse.
+    love.mouse.setGrabbed(true)
+
     -- Setup map camera.
     self.camera = {
         x = 0,
@@ -26,11 +29,21 @@ function MapView:new()
         border = 10
     }
 
+    -- Set up map background.
+    self.background = _G.gameAsssets.graphics.spaceBackground
+    self.backgroundQuad = love.graphics.newQuad(0, 0, self.camera.winWidth, self.camera.winHeight, self.background)
+    self.background:setWrap("mirroredrepeat", "mirroredrepeat")
+
+    
     self.terrain = Terrain()
     self.ui = MapUI()
 end
 
 function MapView:update(dt)
+    -- Update the window size.
+    self.camera.winWidth  = love.graphics.getWidth()
+    self.camera.winHeight = love.graphics.getHeight()
+
     self.terrain:update(dt)
     self.ui:update(dt)
 
@@ -55,9 +68,8 @@ function MapView:update(dt)
 end
 
 function MapView:draw()
-    -- Update the window size.
-    self.camera.winWidth  = love.graphics.getWidth()
-    self.camera.winHeight = love.graphics.getHeight()
+    -- Render background.
+    love.graphics.draw(self.background, self.backgroundQuad, 0, 0)
 
     -- Render map.
     love.graphics.push("all")
@@ -74,6 +86,12 @@ end
 function MapView:mousepressed(x, y, button, istouch, presses)
     -- Update UI mouse actions.
     self.ui:mousepressed(x, y, button, istouch, presses)
+end
+
+function MapView:resize(w, h)
+    -- Resize background according to screen size.
+    self.backgroundQuad = love.graphics.newQuad(0, 0, w, h, self.background)
+    self.background:setWrap("mirroredrepeat", "mirroredrepeat")
 end
 
 return MapView

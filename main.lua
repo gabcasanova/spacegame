@@ -6,7 +6,7 @@ function love.load()
     -- Set game variables.
     love.graphics.setDefaultFilter("linear", "linear")
     _G.debug = true
-    love.mouse.setGrabbed(true)
+    love.mouse.setGrabbed(false)
 
     -- Load game assets.
     _G.gameAsssets = {
@@ -35,7 +35,7 @@ function love.draw()
 end
 
 function love.mousepressed(x, y, button, istouch, presses)
-    -- Update current mouse actions.
+    -- Update current scene mouse actions.
     _G.currentScene:mousepressed(x, y, button, istouch, presses)
 end
 
@@ -44,4 +44,9 @@ function love.keypressed(key, scancode, isrepeat)
     if (key == "escape") then
         love.event.quit()
     end
+end
+
+function love.resize(w, h)
+    -- Resize current scene.
+    _G.currentScene:resize(w, h)
 end

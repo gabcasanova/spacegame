@@ -4,8 +4,7 @@ local Object = require("libs.classic")
 -- Import scripts.
 local handyCode = require("src.handyCode")
 local Button = require ("src.ui.button")
-local Building = require("src.mapView.building")
-----------------------------------------
+------------------------------------------
 
 local MapUI = Button:extend()
 
@@ -77,8 +76,6 @@ function MapUI:draw()
             "Zoom scale: " .. MapView.camera.scale, 
         10, 10)
     end
-
-    love.graphics.rectangle("line", mX, mY, 79, 87)
 end
 
 function MapUI:mousepressed(x, y, button, istouch, presses)
@@ -86,14 +83,6 @@ function MapUI:mousepressed(x, y, button, istouch, presses)
     for index, btn in pairs(self.buttons) do
         btn:mousepressed(x, y, button, istouch, presses)
     end
-
-    camX, camY = handyCode.mousePosToCamPos(x, y, _G.currentScene.camera.x, _G.currentScene.camera.y, _G.currentScene.camera.scale)
-
-    local mousex, mousey = x, y
-    table.insert(_G.currentScene.terrain.buildings, Building(
-        camX, 
-        camY
-    ))
 end
 
 return MapUI

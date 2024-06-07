@@ -38,15 +38,15 @@ function Terrain:new()
 
     -- Iterate through the grid and create the necessary
     -- buildings in the isometric position.
-    for i, v in ipairs(self.mapGrid) do
-        for j, building in ipairs(v) do
+    for i, row in ipairs(self.mapGrid) do
+        for j, building in ipairs(row) do
             if building ~= 0 then
-                local cartX = (j - 1) * self.gridSize
-                local cartY = (i - 1) * self.gridSize
+                local cartX = (i - 1) * self.gridSize
+                local cartY = (j - 1) * self.gridSize
 
                 -- Convert Cartesian coordinates to isometric coordinates
-                local isoX = (cartX - cartY) / self.offsetX
-                local isoY = (cartX + cartY) / self.offsetY  -- Adjust to fit the isometric perspective
+                local isoX = (cartX + cartY) / self.offsetX
+                local isoY = (cartX - cartY) / self.offsetY  -- Adjust to fit the isometric perspective
 
                 -- Create buildings in the desired position.
                 table.insert(self.buildings, Building(isoX, isoY))

@@ -1,4 +1,4 @@
--- Context: 
+-- Context: UI object.
 -- Base for creating buttons by extending this class.
 -----------------------------------------------------
 
@@ -9,7 +9,7 @@ local Object = require("libs.classic")
 local handyCode = require("src.handyCode")
 -----------------------------------------------------
 
-Button = Object:extend()
+local Button = Object:extend()
 
 function Button:new(string, x, y, color)
     self.x, self.y = x, y

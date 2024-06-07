@@ -4,7 +4,7 @@ local MapView = require("src.mapView.mapView")
 
 function love.load()
     -- Set game variables.
-    love.graphics.setDefaultFilter("nearest", "nearest")
+    love.graphics.setDefaultFilter("linear", "linear")
     _G.debug = true
     love.mouse.setGrabbed(true)
 
@@ -14,7 +14,8 @@ function love.load()
             genericFont = love.graphics.newFont(15)
         },
         graphics = {
-            terrain_image = love.graphics.newImage("assets/terrain.png")
+            terrain = love.graphics.newImage("assets/terrain.png"),
+            isoCube = love.graphics.newImage("assets/isoCube.png")
         }
     }
 

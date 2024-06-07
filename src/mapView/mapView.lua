@@ -34,7 +34,7 @@ function MapView:new()
     self.backgroundQuad = love.graphics.newQuad(0, 0, self.camera.winWidth, self.camera.winHeight, self.background)
     self.background:setWrap("mirroredrepeat", "mirroredrepeat")
 
-    
+
     self.terrain = Terrain()
     self.ui = MapUI()
 end
@@ -43,9 +43,6 @@ function MapView:update(dt)
     -- Update the window size.
     self.camera.winWidth  = love.graphics.getWidth()
     self.camera.winHeight = love.graphics.getHeight()
-
-    self.terrain:update(dt)
-    self.ui:update(dt)
 
     -- Edge scrolling.
     local edgeBorder = 10
@@ -65,6 +62,10 @@ function MapView:update(dt)
             self.camera.y = self.camera.y - edgeAmount * dt
         end 
     end
+
+    -- Update map.
+    self.terrain:update(dt)
+    self.ui:update(dt)
 end
 
 function MapView:draw()

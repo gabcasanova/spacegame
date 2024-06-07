@@ -12,9 +12,48 @@ function Terrain:new()
     self.w, self.h = self.image:getDimensions()
     self.x, self.y = 0, 0
     
-    self.buildings = {
-        Building(800, 300)
+    self.buildings = {}
+
+    -- Create map grid.
+    self.mapGrid = {
+        {1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,1},
+        {1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1},
+        {1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,1,0},
+        {0,1,0,0,1,0,0,1,0,0,1,1,1,0,1,0,1},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {1,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1},
+        {1,1,0,1,1,0,1,0,1,0,1,0,0,0,1,0,0,1},
+        {1,0,1,0,1,0,1,1,1,0,1,0,0,0,1,0,0,1},
+        {1,0,0,0,1,0,1,0,1,0,1,1,1,0,0,1,1,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     }
+
+    -- Grid tile size.
+    self.offsetX = 2.4
+    self.offsetY = 4
+    self.gridSize = 87
+
+    -- Iterate through the grid and create the necessary
+    -- buildings in the isometric position.
+    for i, v in ipairs(self.mapGrid) do
+        for j, building in ipairs(v) do
+            if building ~= 0 then
+                local cartX = (j - 1) * self.gridSize
+                local cartY = (i - 1) * self.gridSize
+
+                -- Convert Cartesian coordinates to isometric coordinates
+                local isoX = (cartX - cartY) / self.offsetX
+                local isoY = (cartX + cartY) / self.offsetY  -- Adjust to fit the isometric perspective
+
+                -- Create buildings in the desired position.
+                table.insert(self.buildings, Building(isoX, isoY))
+            end
+        end
+    end
+
 end
 
 local function sortBuildings(a, b)

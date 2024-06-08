@@ -27,7 +27,7 @@ function Building:new(x, y, spritesheet, spriteQuantity, spriteIndex)
     -- on the length of the spritehseet. This means that 
     -- each sprite should have the same horizontal size.
     self.spritesheetWidth = self.spritesheet:getWidth()
-    self.spritesheetHeight = self.spritesheet:getWidth()
+    self.spritesheetHeight = self.spritesheet:getHeight()
     self.spriteWidth = self.spritesheetWidth / self.spriteQuantity
     self.spriteHeight = self.spritesheetHeight
 
@@ -52,6 +52,12 @@ end
 function Building:draw()
     -- Draw building.
     love.graphics.draw(self.spritesheet, self.sprites[self.spriteIndex], self.x, self.y)
+
+    -- Debug.
+    if (_G.debug) then
+        love.graphics.rectangle("line", self.x, self.y, self.spriteWidth, self.spriteHeight)
+        love.graphics.rectangle("fill", self.x, self.y, 5, 5)    
+    end
 end
 
 return Building

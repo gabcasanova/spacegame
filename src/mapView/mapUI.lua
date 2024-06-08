@@ -71,6 +71,7 @@ function MapUI:draw()
     if (_G.debug) then
         love.graphics.print(
             "DEBUG INFORMATION: \n\n" ..
+            "FPS: " .. love.timer.getFPS() .. "\n" ..
             "Mouse X: " .. mX .. "\n" ..
             "Mouse Y: " .. mY .. "\n" ..
             "Zoom scale: " .. MapView.camera.scale, 

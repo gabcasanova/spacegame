@@ -11,8 +11,8 @@ function Terrain:new()
     screenW, screenH = love.graphics.getDimensions()
 
     -- Map look and feel.
-    self.image = _G.gameAsssets.graphics.terrain
-    self.w, self.h = self.image:getDimensions()
+    self.mapImage = _G.gameAsssets.graphics.terrain
+    self.w, self.h = self.mapImage:getDimensions()
     self.x, self.y = 0, 0
     
     self.buildings = {}
@@ -29,6 +29,10 @@ function Terrain:new()
     self.buildingOffsetX = 2.4
     self.buildingOffsetY = 4
 
+    self.mapOffsetX = 0             -- Offset so that the buildings are created in the top-left of 
+    self.mapOffsetY = self.h/2-65   -- the map. Currently, these are magic numbers. I have to find 
+                                    -- a way to have a more logical approach to this.  
+
     -- Iterate through each row in the grid and go through
     -- each value inside the row, then, create the building 
     -- in the correct isometric position.
@@ -43,7 +47,7 @@ function Terrain:new()
                 local isoY = (cartX - cartY) / self.buildingOffsetY  -- Adjust to fit the isometric perspective
 
                 -- Create buildings in the desired position.
-                table.insert(self.buildings, Building(isoX, isoY))
+                table.insert(self.buildings, Building(isoX + self.mapOffsetX, isoY + self.mapOffsetY))
             end
         end
     end
@@ -67,7 +71,7 @@ end
 
 function Terrain:draw()
     -- Draw terrain.
-    love.graphics.draw(self.image, self.x, self.y)
+    love.graphics.draw(self.mapImage, self.x, self.y)
 
     -- Draw map buildings.
     for i, building in pairs(self.buildings) do

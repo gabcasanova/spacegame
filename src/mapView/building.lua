@@ -15,8 +15,8 @@ function Building:new(x, y, spritesheet, spriteQuantity, spriteIndex)
     -- Default building sprite.
     if (spritesheet == nil) then
         self.spritesheet = _G.gameAsssets.graphics.isoCube
-        self.spriteQuantity = 3
-        self.spriteIndex = 1 
+        self.spriteQuantity = 4
+        self.spriteIndex = 1
     else
         self.spritesheet = spritesheet
         self.spriteQuantity = spriteQuantity
@@ -55,8 +55,8 @@ function Building:draw()
 
     -- Debug.
     if (_G.debug) then
-        love.graphics.rectangle("line", self.x, self.y, self.spriteWidth, self.spriteHeight)
-        love.graphics.rectangle("fill", self.x, self.y, 5, 5)    
+        --love.graphics.rectangle("line", self.x, self.y, self.spriteWidth, self.spriteHeight)
+        --love.graphics.rectangle("fill", self.x, self.y, 5, 5)    
     end
 end
 

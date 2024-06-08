@@ -18,20 +18,25 @@ function Terrain:new()
     self.buildings = {}
 
     -- Create map grid.
-    self.buildingsGrid = {
-        {1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,1},
-        {1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1},
-        {1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,1,0},
-    }
+    self.buildingsGrid = {}
+    self.gridRows = 38
+    self.gridColumns = 38
+    for i = 1, self.gridRows, 1 do
+        local buildings = {}
+        for j = 1, self.gridColumns, 1 do
+            table.insert(buildings, j, 1)
+        end
+        table.insert(self.buildingsGrid, i, buildings)
+    end
 
     -- Grid tile size and offset.
     self.gridSize = 87
     self.buildingOffsetX = 2.4
     self.buildingOffsetY = 4
 
-    self.mapOffsetX = 0             -- Offset so that the buildings are created in the top-left of 
-    self.mapOffsetY = self.h/2-65   -- the map. Currently, these are magic numbers. I have to find 
-                                    -- a way to have a more logical approach to this.  
+    self.mapOffsetX = self.x              -- Offset so that the buildings are created in the top-left  
+    self.mapOffsetY = self.y+self.h/2-65  -- of the map. Currently, these are magic numbers. I have   
+                                          -- to find a way to have a more logical approach to this.  
 
     -- Iterate through each row in the grid and go through
     -- each value inside the row, then, create the building 
@@ -64,8 +69,8 @@ end
 
 function Terrain:update(dt)
     -- Keep the proper isometric perspective. Since objects 
-    -- won't be able to be on top of each other, there's 
-    -- no need for a Z axis. There's only X and Y sorting.
+    -- won't be able to be on top of each other, there's no
+    -- need for a Z axis. There's only X and Y sorting.
     table.sort(self.buildings, sortBuildings)
 end
 

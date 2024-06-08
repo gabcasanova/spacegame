@@ -40,9 +40,12 @@ function love.mousepressed(x, y, button, istouch, presses)
 end
 
 function love.keypressed(key, scancode, isrepeat)
-    -- Quit game.
     if (key == "escape") then
+        -- Quit game.
         love.event.quit()
+    elseif (key == "q") then
+        -- Deactivate debug.
+        if (_G.debug) then _G.debug = false else _G.debug = true end
     end
 end
 

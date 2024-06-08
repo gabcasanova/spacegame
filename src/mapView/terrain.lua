@@ -8,6 +8,9 @@ local Building = require("src.mapView.building")
 local Terrain = Object:extend()
 
 function Terrain:new()
+    screenW, screenH = love.graphics.getDimensions()
+
+    -- Map look and feel.
     self.image = _G.gameAsssets.graphics.terrain
     self.w, self.h = self.image:getDimensions()
     self.x, self.y = 0, 0
@@ -15,38 +18,29 @@ function Terrain:new()
     self.buildings = {}
 
     -- Create map grid.
-    self.mapGrid = {
+    self.buildingsGrid = {
         {1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,1},
         {1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1},
         {1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,1,0},
-        {0,1,0,0,1,0,0,1,0,0,1,1,1,0,1,0,1},
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-        {1,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1},
-        {1,1,0,1,1,0,1,0,1,0,1,0,0,0,1,0,0,1},
-        {1,0,1,0,1,0,1,1,1,0,1,0,0,0,1,0,0,1},
-        {1,0,0,0,1,0,1,0,1,0,1,1,1,0,0,1,1,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     }
 
-    -- Grid tile size.
-    self.offsetX = 2.4
-    self.offsetY = 4
+    -- Grid tile size and offset.
     self.gridSize = 87
+    self.buildingOffsetX = 2.4
+    self.buildingOffsetY = 4
 
-    -- Iterate through the grid and create the necessary
-    -- buildings in the isometric position.
-    for i, row in ipairs(self.mapGrid) do
+    -- Iterate through each row in the grid and go through
+    -- each value inside the row, then, create the building 
+    -- in the correct isometric position.
+    for i, row in ipairs(self.buildingsGrid) do
         for j, building in ipairs(row) do
             if building ~= 0 then
                 local cartX = (i - 1) * self.gridSize
                 local cartY = (j - 1) * self.gridSize
 
-                -- Convert Cartesian coordinates to isometric coordinates
-                local isoX = (cartX + cartY) / self.offsetX
-                local isoY = (cartX - cartY) / self.offsetY  -- Adjust to fit the isometric perspective
+                -- Convert cartesian coordinates to isometric coordinates
+                local isoX = (cartX + cartY) / self.buildingOffsetX
+                local isoY = (cartX - cartY) / self.buildingOffsetY  -- Adjust to fit the isometric perspective
 
                 -- Create buildings in the desired position.
                 table.insert(self.buildings, Building(isoX, isoY))
@@ -65,15 +59,17 @@ local function sortBuildings(a, b)
 end
 
 function Terrain:update(dt)
-    -- Keep the proper perspective. Since objects won't
-    -- be able to be on top of each other, there's no need
-    -- for a Z axis. There's only X and Y sorting.
+    -- Keep the proper isometric perspective. Since objects 
+    -- won't be able to be on top of each other, there's 
+    -- no need for a Z axis. There's only X and Y sorting.
     table.sort(self.buildings, sortBuildings)
 end
 
 function Terrain:draw()
+    -- Draw terrain.
     love.graphics.draw(self.image, self.x, self.y)
 
+    -- Draw map buildings.
     for i, building in pairs(self.buildings) do
         building:draw()
     end

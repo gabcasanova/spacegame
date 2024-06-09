@@ -18,9 +18,22 @@ function Terrain:new()
     self.buildings = {}
 
     -- Create map grid.
-    self.buildingsGrid = {}
-    self.gridRows = 38
-    self.gridColumns = 38
+    --[[self.buildingsGrid = {
+        {1,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0},
+    }]]
+    self.gridRows = 38/2
+    self.gridColumns = 38/2
     for i = 1, self.gridRows, 1 do
         local buildings = {}
         for j = 1, self.gridColumns, 1 do
@@ -43,19 +56,23 @@ function Terrain:new()
     -- in the correct isometric position.
     for i, row in ipairs(self.buildingsGrid) do
         for j, building in ipairs(row) do
-            if building ~= 0 then
+            if building == 1 then
                 local cartX = (i - 1) * self.gridSize
                 local cartY = (j - 1) * self.gridSize
 
                 -- Convert cartesian coordinates to isometric coordinates
                 local isoX = (cartX + cartY) / self.buildingOffsetX
-                local isoY = (cartX - cartY) / self.buildingOffsetY  -- Adjust to fit the isometric perspective
+                local isoY = (cartX - cartY) / self.buildingOffsetY
 
                 -- Create buildings in the desired position.
-                table.insert(self.buildings, Building(isoX + self.mapOffsetX, isoY + self.mapOffsetY))
+                local desiredXPos = math.floor(isoX + self.mapOffsetX) -- Round position numbers.
+                local desiredYPos = math.floor(isoY + self.mapOffsetY)
+                table.insert(self.buildings, Building(desiredXPos, desiredYPos, 1, 1))
             end
         end
     end
+
+    self.buildingsGrid[1][1] = 0
 
 end
 
@@ -72,6 +89,11 @@ function Terrain:update(dt)
     -- won't be able to be on top of each other, there's no
     -- need for a Z axis. There's only X and Y sorting.
     table.sort(self.buildings, sortBuildings)
+
+    -- Update map buildings.
+    for i, building in pairs(self.buildings) do
+        building:update(dt)
+    end
 end
 
 function Terrain:draw()

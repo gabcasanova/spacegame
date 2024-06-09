@@ -5,7 +5,7 @@ local MapView = require("src.mapView.mapView")
 function love.load()
     -- Set game variables.
     love.graphics.setDefaultFilter("linear", "linear")
-    _G.debug = true
+    _G.debug = false
     love.mouse.setGrabbed(false)
 
     -- Load game assets.
@@ -46,6 +46,10 @@ function love.keypressed(key, scancode, isrepeat)
     elseif (key == "q") then
         -- Deactivate debug.
         if (_G.debug) then _G.debug = false else _G.debug = true end
+    elseif (key == "r") then
+        -- Restart scene.
+        _G.currentScene = MapView()
+        collectgarbage("collect")
     end
 end
 

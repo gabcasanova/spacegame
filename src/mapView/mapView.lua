@@ -34,9 +34,8 @@ function MapView:new()
     self.backgroundQuad = love.graphics.newQuad(0, 0, self.camera.winWidth, self.camera.winHeight, self.background)
     self.background:setWrap("mirroredrepeat", "mirroredrepeat")
 
-
-    self.terrain = Terrain()
-    self.ui = MapUI()
+    self.ui = MapUI(self)
+    self.terrain = Terrain(self)
 end
 
 function MapView:update(dt)
@@ -64,8 +63,8 @@ function MapView:update(dt)
     end
 
     -- Update map.
-    self.terrain:update(dt)
-    self.ui:update(dt)
+    self.terrain:update(self, dt)
+    self.ui:update(self, dt)
 end
 
 function MapView:draw()
@@ -77,16 +76,16 @@ function MapView:draw()
         love.graphics.scale(self.camera.scale, self.camera.scale)
         love.graphics.translate(self.camera.x, self.camera.y)
 
-        self.terrain:draw() -- Draw terrain.
+        self.terrain:draw(self) -- Draw terrain.
     love.graphics.pop()
     
     -- Render UI.
-    self.ui:draw()
+    self.ui:draw(self)
 end
 
 function MapView:mousepressed(x, y, button, istouch, presses)
     -- Update UI mouse actions.
-    self.ui:mousepressed(x, y, button, istouch, presses)
+    self.ui:mousepressed(self, x, y, button, istouch, presses)
 end
 
 function MapView:resize(w, h)

@@ -44,6 +44,8 @@ function Terrain:new(scene) -- Parse game scene.
         table.insert(self.buildingsGrid, i, buildings)
     end
 
+    self.buildingsGrid[3][3] = 1 -- *TEMPORARY*
+
     -- Grid tile size and offset.
     self.gridSize = 87
     self.tileOffsetX = 2.4
@@ -52,16 +54,19 @@ function Terrain:new(scene) -- Parse game scene.
     self.mapOffsetY = self.y+self.h/2-65  -- of the map. Currently, these are magic numbers. I have   
                                           -- to find a way to have a more logical approach to this.  
 
+    self.buildings = {}                   -- Table where the actual tile classes are stored.
+
     -- Iterate through each row in the grid and go through
-    -- each value inside the row, then, create the tile 
-    -- in the correct isometric position.
-    self.buildings = {}
+    -- each value inside the row, then, create the tile in
+    -- the correct isometric position.
     for i, row in ipairs(self.buildingsGrid) do
         for j, building in ipairs(row) do
             local desiredXPos, desiredYPos = handyCode.gridTileToIsometricTile(i, j, self.gridSize, self.tileOffsetX, self.tileOffsetY, self.mapOffsetX, self.mapOffsetY)
             
-            if (building == 1) then
+            if (building == 0) then
                 table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, 1, 1))
+            elseif (building == 1) then
+                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, 1, 1, _G.gameAsssets.graphics.isoCube, 3, 2))
             end
         end
     end

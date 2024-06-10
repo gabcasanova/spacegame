@@ -10,19 +10,19 @@ local Terrain = Object:extend()
 
 function Terrain:new(scene) -- Parse game scene.
     -- Get current screen size.
-    screenW, screenH = love.graphics.getDimensions()
+    local screenW, screenH = love.graphics.getDimensions()
 
     -- Map look and feel.
     self.mapImage = _G.gameAsssets.graphics.terrain
     self.w, self.h = self.mapImage:getDimensions()
     self.x, self.y = 0, 0
     
-    self.buildings = {}
-
+    -- MAP IMPORTING / GENERATION --------------------------------------------
     -- Create map grid.
     self.buildingsGrid = {}
-    self.buildingsGrid = {
-        {1,0,0,0,0,0,0,0,0,0,0,0},
+    --[[ self.buildingsGrid = {
+        {1,1,0,0,0,0,0,0,0,0,0,0},
+        {1,1,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0},
@@ -33,17 +33,16 @@ function Terrain:new(scene) -- Parse game scene.
         {0,0,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-    }
+    } ]]
     self.gridRows = 38/2
     self.gridColumns = 38/2
-    --[[ for i = 1, self.gridRows, 1 do
+    for i = 1, self.gridRows, 1 do
         local buildings = {}
         for j = 1, self.gridColumns, 1 do
             table.insert(buildings, j, 0)
         end
         table.insert(self.buildingsGrid, i, buildings)
-    end ]]
+    end
 
     -- Grid tile size and offset.
     self.gridSize = 87
@@ -56,18 +55,17 @@ function Terrain:new(scene) -- Parse game scene.
     -- Iterate through each row in the grid and go through
     -- each value inside the row, then, create the tile 
     -- in the correct isometric position.
+    self.buildings = {}
     for i, row in ipairs(self.buildingsGrid) do
         for j, building in ipairs(row) do
             local desiredXPos, desiredYPos = handyCode.gridTileToIsometricTile(i, j, self.gridSize, self.tileOffsetX, self.tileOffsetY, self.mapOffsetX, self.mapOffsetY)
             
             if (building == 1) then
-                table.insert(self.buildings, Tile(self, desiredXPos, desiredYPos))
+                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, 1, 1))
             end
         end
     end
-
-    self.buildingsGrid[1][1] = 0
-
+    --------------------------------------------------------------------------
 end
 
 local function sortBuildings(a, b)

@@ -45,6 +45,7 @@ function Terrain:new(scene) -- Parse game scene.
     end
 
     self.buildingsGrid[3][3] = 1 -- *TEMPORARY*
+    self.buildingsGrid[10][10] = 2 -- *TEMPORARY*
 
     -- Grid tile size and offset.
     self.gridSize = 87
@@ -64,9 +65,11 @@ function Terrain:new(scene) -- Parse game scene.
             local desiredXPos, desiredYPos = handyCode.gridTileToIsometricTile(i, j, self.gridSize, self.tileOffsetX, self.tileOffsetY, self.mapOffsetX, self.mapOffsetY)
             
             if (building == 0) then
-                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, 1, 1))
+                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, false, 1, 1))
             elseif (building == 1) then
-                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, 1, 1, _G.gameAsssets.graphics.isoCube, 3, 2))
+                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, false, 1, 1, _G.gameAsssets.graphics.isoCube, 3, 1))
+            elseif (building == 2) then
+                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, true, 2, 3, _G.gameAsssets.graphics.militaryDeposit, 1, 1))
             end
         end
     end

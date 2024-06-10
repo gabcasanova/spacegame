@@ -17,7 +17,8 @@ function love.load()
             spaceBackground = love.graphics.newImage("assets/spaceBackground.png"),
             terrain = love.graphics.newImage("assets/terrain.png"),
             isoCube = love.graphics.newImage("assets/isoCube.png"),
-            tile    = love.graphics.newImage("assets/tile.png")
+            tile    = love.graphics.newImage("assets/tile.png"),
+            militaryDeposit = love.graphics.newImage("assets/militaryDeposit.png")
         }
     }
 

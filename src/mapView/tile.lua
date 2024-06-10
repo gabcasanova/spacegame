@@ -11,12 +11,13 @@ local handyCode = require("src.handyCode")
 
 local Tile = Object:extend()
 
-function Tile:new(scene, terrain, x, y, tilewidth, tileheight, spritesheet, spriteQuantity, spriteIndex)
+function Tile:new(scene, terrain, x, y, destroyable, tilewidth, tileheight, spritesheet, spriteQuantity, spriteIndex)
     self.x, self.y = x, y
     self.tileWidth, self.tileHeight = tilewidth, tileheight -- Tile size in the grid.
 
     self.isHovered = false
     self.hoverDim = 0.8 -- How dark the tile will be when hovered.
+    self.destroyable = destroyable
 
     -- TILE MASK -----------------------------------------------------------
     -- Tile border sprite.
@@ -41,7 +42,7 @@ function Tile:new(scene, terrain, x, y, tilewidth, tileheight, spritesheet, spri
     local tileOffsetX = terrain.tileOffsetX
     local tileOffsetY = terrain.tileOffsetY
     local mapOffsetX  = terrain.mapOffsetX
-    local mapOffsetY  = terrain.mapOffsetY
+    local mapOffsetY  = 0
 
     self.masks = {}                               -- This works pretty much like the grid importer from
     for row = 1, self.tileWidth, 1 do             -- mapview/terrain.lua.
@@ -49,9 +50,7 @@ function Tile:new(scene, terrain, x, y, tilewidth, tileheight, spritesheet, spri
             local desiredXPos, desiredYPos = handyCode.gridTileToIsometricTile(
                 row, column, gridSize, tileOffsetX, tileOffsetY, mapOffsetX, mapOffsetY
             )
-            table.insert(self.masks, {x = self.maskX + desiredXPos, y = self.maskY})
-
-            print(self.maskY)
+            table.insert(self.masks, {x = self.maskX + desiredXPos, y = self.maskY + desiredYPos})
         end
     end
     ------------------------------------------------------------------------
@@ -113,7 +112,7 @@ function Tile:draw(scene)
 
         -- Draw building sprite.
         if (self.displaySprite == true) then
-            love.graphics.draw(self.spritesheet, self.sprites[self.spriteIndex], self.x, self.y)
+            love.graphics.draw(self.spritesheet, self.sprites[self.spriteIndex], self.x, self.y + (self.tileSpriteHeight - self.spriteHeight))
         end
 
         -- Debug. 

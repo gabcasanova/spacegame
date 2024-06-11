@@ -34,8 +34,8 @@ function Terrain:new(scene) -- Parse game scene.
         {0,0,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0},
     } ]]
-    self.gridRows = 38/2
-    self.gridColumns = 38/2
+    self.gridRows = 38
+    self.gridColumns = 38
     for i = 1, self.gridRows, 1 do
         local buildings = {}
         for j = 1, self.gridColumns, 1 do
@@ -67,7 +67,7 @@ function Terrain:new(scene) -- Parse game scene.
             if (building == 0) then
                 table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, false, 1, 1))
             elseif (building == 1) then
-                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, false, 1, 1, _G.gameAsssets.graphics.isoCube, 3, 1))
+                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, false, 1, 1, _G.gameAsssets.graphics.isoCube, 3, 2))
             elseif (building == 2) then
                 table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, true, 2, 3, _G.gameAsssets.graphics.militaryDeposit, 1, 1))
             end

@@ -11,13 +11,14 @@ local handyCode = require("src.handyCode")
 
 local Tile = Object:extend()
 
-function Tile:new(scene, terrain, x, y, destroyable, tilewidth, tileheight, spritesheet, spriteQuantity, spriteIndex)
+function Tile:new(scene, terrain, row, column, x, y, tilewidth, tileheight, spritesheet, spriteQuantity, spriteIndex)
     self.x, self.y = x, y
+    self.rowNum, self.columnNum = row, column               -- Where is the tile placed in the grid.
     self.tileWidth, self.tileHeight = tilewidth, tileheight -- Tile size in the grid.
 
     self.isHovered = false
     self.hoverDim = 0.8 -- How dark the tile will be when hovered.
-    self.destroyable = destroyable
+    self.destroyable = false
 
     -- TILE MASK -----------------------------------------------------------
     -- Tile border sprite.

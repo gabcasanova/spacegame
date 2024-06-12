@@ -2,9 +2,9 @@
 local Object = require("libs.classic")
 
 -- Import Scripts.
-local handyCode = require("src.handyCode")
-local Tile = require("src.mapView.tile")
----------------------------------------
+local handyCode   = require("src.handyCode")
+local createTiles = require("src.mapView.tilesList")
+----------------------------------------------------
 
 local Terrain = Object:extend()
 
@@ -20,20 +20,6 @@ function Terrain:new(scene) -- Parse game scene.
     -- MAP IMPORTING / GENERATION --------------------------------------------
     -- Create map grid.
     self.buildingsGrid = {}
-    --[[ self.buildingsGrid = {
-        {1,1,0,0,0,0,0,0,0,0,0,0},
-        {1,1,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0},
-    } ]]
     self.gridRows = 38
     self.gridColumns = 38
     for i = 1, self.gridRows, 1 do
@@ -64,13 +50,7 @@ function Terrain:new(scene) -- Parse game scene.
         for j, building in ipairs(row) do
             local desiredXPos, desiredYPos = handyCode.gridTileToIsometricTile(i, j, self.gridSize, self.tileOffsetX, self.tileOffsetY, self.mapOffsetX, self.mapOffsetY)
             
-            if (building == 0) then
-                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, false, 1, 1))
-            elseif (building == 1) then
-                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, false, 1, 1, _G.gameAsssets.graphics.isoCube, 3, 2))
-            elseif (building == 2) then
-                table.insert(self.buildings, Tile(scene, self, desiredXPos, desiredYPos, true, 2, 3, _G.gameAsssets.graphics.militaryDeposit, 1, 1))
-            end
+            createTiles(scene, self, building, self.buildings, i, j, desiredXPos, desiredYPos)
         end
     end
     --------------------------------------------------------------------------

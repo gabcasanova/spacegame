@@ -23,7 +23,9 @@ function MapView:new()
     self.camera = {
         x = 0,
         y = 0,
-        scale = 1,
+        scale = 0.5,
+        maxScale = 1.5,
+        minScale = 0.5,
         winWidth = love.graphics.getWidth(),
         winHeight = love.graphics.getHeight(),
         border = 10

@@ -23,7 +23,10 @@ function MapUI:new(scene)
         self.y = self.border
     end
     function self.buttons.zoomIn:leftAction()
-        scene.camera.scale = scene.camera.scale + 0.5
+        -- Ensure zoom doesn't go above max.
+        if (scene.camera.scale < scene.camera.maxScale) then
+            scene.camera.scale = scene.camera.scale + 0.5
+        end
     end
 
     -- Zoom out button.
@@ -32,7 +35,10 @@ function MapUI:new(scene)
         self.y = 50
     end
     function self.buttons.zoomOut:leftAction()
-        scene.camera.scale = scene.camera.scale - 0.5
+        -- Ensure zoom doesn't go below min.
+        if (scene.camera.scale > scene.camera.minScale) then
+            scene.camera.scale = scene.camera.scale - 0.5
+        end
     end
 
     -- Create building button.

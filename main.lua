@@ -14,6 +14,7 @@ function love.load()
             genericFont = love.graphics.newFont(15)
         },
         graphics = {
+            zoomButton = love.graphics.newImage("assets/ui/zoomButtons.png"),
             spaceBackground = love.graphics.newImage("assets/spaceBackground.png"),
             terrain = love.graphics.newImage("assets/terrain.png"),
             isoCube = love.graphics.newImage("assets/isoCube.png"),

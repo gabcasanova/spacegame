@@ -7,7 +7,7 @@ local Object = require("libs.classic")
 
 -- Import scripts.
 local Terrain = require("src.mapView.terrain")
-local MapUI   = require("src.mapView.mapUI")
+local MapUI   = require("src.mapView.ui.mapUI")
 -----------------------------------------------
 
 local MapView = Object:extend()
@@ -23,9 +23,12 @@ function MapView:new()
     self.camera = {
         x = 0,
         y = 0,
+        
         scale = 0.5,
+        scaleAmount = 0.5,
         maxScale = 1.5,
         minScale = 0.5,
+
         winWidth = love.graphics.getWidth(),
         winHeight = love.graphics.getHeight(),
         border = 10

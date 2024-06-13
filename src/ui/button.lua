@@ -11,7 +11,7 @@ local handyCode = require("src.handyCode")
 
 local Button = Object:extend()
 
-function Button:new(string, x, y, color)
+function Button:new(scene, string, x, y, color)
     self.x, self.y = x, y
 
     -- Create text.
@@ -49,19 +49,19 @@ function Button:checkMousePosition()
     end
 end
 
-function Button:customUpdate(dt)
+function Button:customUpdate(scene, dt)
     -- This update is left blank because this function 
     -- is meant to be overwritten in case the developer
     -- needs a custom update function and yet doesn't
     -- feel like overriding the actual update function.
 end
 
-function Button:update(dt)
+function Button:update(scene, dt)
     self:checkMousePosition()
-    self:customUpdate(dt)
+    self:customUpdate(scene, dt)
 end
 
-function Button:draw()
+function Button:draw(scene)
     love.graphics.push("all")
         -- Draw rectangle.
         if not (self.isHovered) then -- Set color on mouse position.
@@ -77,21 +77,21 @@ function Button:draw()
     love.graphics.pop()
 end
 
-function Button:leftAction()
+function Button:leftAction(scene)
     -- This is where left button mouse action code shall go.
 end
 
-function Button:rightAction()
+function Button:rightAction(scene)
     -- This is where left button mouse action code shall go.
 end
 
-function Button:mousepressed(x, y, button, istouch, presses)
+function Button:mousepressed(scene, x, y, button, istouch, presses)
     -- Check if the mouse is above the button.
     if (self.isHovered) then
         if (button == 1) then -- Left button action.
-            self:leftAction()
+            self:leftAction(scene)
         elseif (button == 2) then -- Right button action
-            self:rightAction()
+            self:rightAction(scene)
         end
     end
 end

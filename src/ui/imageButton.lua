@@ -11,7 +11,7 @@ local handyCode = require("src.handyCode")
 
 local ImageButton = Object:extend()
 
-function ImageButton:new(x, y, spritesheet, spriteQuantity, spriteIndex)
+function ImageButton:new(scene, x, y, spritesheet, spriteQuantity, spriteIndex)
     self.x, self.y = x, y
     self.w, self.h = 0, 0
 
@@ -56,21 +56,21 @@ function ImageButton:checkMousePosition()
     end
 end
 
-function ImageButton:customUpdate(dt)
+function ImageButton:customUpdate(scene, dt)
     -- This update is left blank because this function 
     -- is meant to be overwritten in case the developer
     -- needs a custom update function and yet doesn't
     -- feel like overriding the actual update function.
 end
 
-function ImageButton:update(dt)
+function ImageButton:update(scene, dt)
     self:checkMousePosition()
-    self:customUpdate(dt)
+    self:customUpdate(scene, dt)
 end
 
-function ImageButton:draw()
+function ImageButton:draw(scene)
     love.graphics.push("all")
-        -- Draw rectangle.
+        -- Draw image.
         if not (self.isHovered) then -- Set color on mouse position.
             love.graphics.setColor(1, 1, 1)
         else
@@ -81,21 +81,21 @@ function ImageButton:draw()
     love.graphics.pop()
 end
 
-function ImageButton:leftAction()
+function ImageButton:leftAction(scene)
     -- This is where left button mouse action code shall go.
 end
 
-function ImageButton:rightAction()
+function ImageButton:rightAction(scene)
     -- This is where left button mouse action code shall go.
 end
 
-function ImageButton:mousepressed(x, y, button, istouch, presses)
+function ImageButton:mousepressed(scene, x, y, button, istouch, presses)
     -- Check if the mouse is above the button.
     if (self.isHovered) then
         if (button == 1) then -- Left button action.
-            self:leftAction()
+            self:leftAction(scene)
         elseif (button == 2) then -- Right button action
-            self:rightAction()
+            self:rightAction(scene)
         end
     end
 end

@@ -5,7 +5,8 @@ local Object = require("libs.classic")
 local handyCode = require("src.handyCode")
 local Button = require ("src.ui.button")
 local ImageButton = require("src.ui.imageButton")
--------------------------------------------------
+local ZoomButton = require("src.mapView.ui.zoomButton")
+-------------------------------------------------------
 
 local MapUI = Object:extend()
 
@@ -15,7 +16,8 @@ function MapUI:new(scene)
 
     -- Create buttons.
     self.buttons = {
-        --
+        ZoomButton(scene, 10, 10, 1),
+        ZoomButton(scene, 10, 30, 2)
     }
 
     self.interfaceBackground = {}
@@ -32,7 +34,7 @@ function MapUI:update(scene, dt)
 
     -- Update buttons.
     for index, btn in pairs(self.buttons) do
-        btn:update(dt)
+        btn:update(scene, dt)
     end
 end
 
@@ -45,7 +47,7 @@ function MapUI:draw(scene)
 
         -- Draw buttons.
         for index, btn in pairs(self.buttons) do
-            btn:draw()
+            btn:draw(scene)
         end
 
         -- Draw debug information.
@@ -66,7 +68,7 @@ end
 function MapUI:mousepressed(scene, x, y, button, istouch, presses)
     -- Update button mouse action.
     for index, btn in pairs(self.buttons) do
-        btn:mousepressed(x, y, button, istouch, presses)
+        btn:mousepressed(scene, x, y, button, istouch, presses)
     end
 end
 

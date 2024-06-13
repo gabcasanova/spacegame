@@ -17,7 +17,7 @@ function MapUI:new(scene)
     -- Create buttons.
     self.buttons = {
         ZoomButton(scene, 10, 10, 1),
-        ZoomButton(scene, 10, 30, 2)
+        ZoomButton(scene, 10, 50, 2)
     }
 
     self.interfaceBackground = {}

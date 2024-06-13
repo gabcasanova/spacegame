@@ -5,7 +5,7 @@ local ImageButton = require("src.ui.imageButton")
 local ZoomButton = ImageButton:extend()
 
 function ZoomButton:new(scene, x, y, type)
-    ZoomButton.super.new(self, scene, x, y, _G.gameAsssets.graphics.zoomButton, 2, 1)
+    ZoomButton.super.new(self, scene, x, y, _G.gameAsssets.graphics.zoomButton, 2, type)
     self.zoomType = type
 end
 

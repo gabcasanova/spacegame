@@ -5,7 +5,7 @@ local Object = require("libs.classic")
 local handyCode = require("src.handyCode")
 local Button = require ("src.ui.button")
 local ImageButton = require("src.ui.imageButton")
-local ZoomButton = require("src.mapView.ui.zoomButton")
+local ZoomButtons = require("src.mapView.ui.zoomButtons")
 -------------------------------------------------------
 
 local MapUI = Object:extend()
@@ -14,16 +14,17 @@ function MapUI:new(scene)
     -- Get current screen size.
     local screenW, screenH = love.graphics.getDimensions()
 
-    -- Create buttons.
-    self.buttons = {
-        ZoomButton(scene, 10, 10, 1),
-        ZoomButton(scene, 10, 50, 2)
-    }
-
     self.interfaceBackground = {}
     self.interfaceBackground.x = screenW - 128
     self.interfaceBackground.y = 0
     self.interfaceBackground.w = 128
+
+    -- Create buttons.
+    self.buttons = {
+        zoomIn = ZoomButtons(scene, self, 0, 0, 1),
+        zoomOut = ZoomButtons(scene, self, 0, 0, 2),
+        move = ZoomButtons(scene, self, 0, 0, 3)
+    }
 end
 
 function MapUI:update(scene, dt)

@@ -47,13 +47,14 @@ function MapView:update(dt)
 
     -- Edge scrolling.
     local edgeBorder = 10
-    local edgeAmount = 300
+    local edgeAmount = 400
     local mX, mY = love.mouse.getPosition()
 
-    if (love.window.hasFocus() and love.mouse.isGrabbed()) then
+    if (love.window.hasFocus()) then
         if (mX <= edgeBorder) then -- Horizontal edge scrolling.
             self.camera.x = self.camera.x + edgeAmount * dt
-        elseif (mX >= self.camera.winWidth - edgeBorder) then
+        elseif (mX >= self.ui.interfaceBackground.x - edgeBorder 
+           and  mX <= self.ui.interfaceBackground.x) then
             self.camera.x = self.camera.x - edgeAmount * dt
         end
             

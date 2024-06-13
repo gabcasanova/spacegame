@@ -19,10 +19,9 @@ function MapUI:new(scene)
     }
 
     self.interfaceBackground = {}
+    self.interfaceBackground.x = screenW - 128
     self.interfaceBackground.y = 0
     self.interfaceBackground.w = 128
-    
-    
 end
 
 function MapUI:update(scene, dt)

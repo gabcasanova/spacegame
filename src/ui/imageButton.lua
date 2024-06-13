@@ -18,6 +18,7 @@ function ImageButton:new(scene, x, y, spritesheet, spriteQuantity, spriteIndex)
     -- Properties.
     self.isHovered = false
     self.darkFact = 0.8
+    self.scale = 1
 
     -- SPRITESHEET ---------------------------------------------------------
     self.spritesheet = spritesheet
@@ -49,7 +50,7 @@ end
 function ImageButton:checkMousePosition()
     -- Check if cursor is above.
     self.mX, self.mY = love.mouse.getPosition()
-    if (handyCode.aabb(self.x, self.y, self.w, self.h, self.mX, self.mY, 0, 0)) then
+    if (handyCode.aabb(self.x, self.y, self.w * self.scale, self.h * self.scale, self.mX, self.mY, 0, 0)) then
         self.isHovered = true
     else
         self.isHovered = false
@@ -76,7 +77,7 @@ function ImageButton:draw(scene)
         else
             love.graphics.setColor(self.darkFact, self.darkFact, self.darkFact)
         end
-        love.graphics.draw(self.spritesheet, self.sprites[self.spriteIndex], self.x, self.y)
+        love.graphics.draw(self.spritesheet, self.sprites[self.spriteIndex], self.x, self.y, 0, self.scale, self.scale)
 
     love.graphics.pop()
 end

@@ -31,7 +31,7 @@ function MapView:new()
 
         winWidth = love.graphics.getWidth(),
         winHeight = love.graphics.getHeight(),
-        border = 10
+        border = 15
     }
 
     -- Set up map background.

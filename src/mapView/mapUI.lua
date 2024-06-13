@@ -4,54 +4,33 @@ local Object = require("libs.classic")
 -- Import scripts.
 local handyCode = require("src.handyCode")
 local Button = require ("src.ui.button")
+local ImageButton = require("src.ui.imageButton")
 ------------------------------------------
 
 local MapUI = Button:extend()
 
 function MapUI:new(scene)
+    -- Get current screen size.
+    local screenW, screenH = love.graphics.getDimensions()
+
     -- Create buttons.
     self.buttons = {
-        zoomIn = Button("Zoom In", 0, 0),
-        zoomOut = Button("Zoom Out", 0, 0),
-        building = Button("Create building", 0, 0)
+        ImageButton(10, 10, _G.gameAsssets.graphics.zoomButton, 2, 1)
     }
 
-    -- Define button actions. --------------------------------
-    -- Zoom in button.
-    function self.buttons.zoomIn:customUpdate(dt)
-        self.x = scene.camera.winWidth - self.w - self.border
-        self.y = self.border
-    end
-    function self.buttons.zoomIn:leftAction()
-        -- Ensure zoom doesn't go above max.
-        if (scene.camera.scale < scene.camera.maxScale) then
-            scene.camera.scale = scene.camera.scale + 0.5
-        end
-    end
-
-    -- Zoom out button.
-    function self.buttons.zoomOut:customUpdate(dt)
-        self.x = scene.camera.winWidth - self.w - self.border
-        self.y = 50
-    end
-    function self.buttons.zoomOut:leftAction()
-        -- Ensure zoom doesn't go below min.
-        if (scene.camera.scale > scene.camera.minScale) then
-            scene.camera.scale = scene.camera.scale - 0.5
-        end
-    end
-
-    -- Create building button.
-    function self.buttons.building:customUpdate(dt)
-        self.x = scene.camera.winWidth - self.w - self.border
-        self.y = 100
-    end
-    function self.buttons.building:leftAction()
-        --
-    end
+    self.interfaceBackground = {}
+    self.interfaceBackground.y = 0
+    self.interfaceBackground.w = 128
+    
+    
 end
 
 function MapUI:update(scene, dt)
+    -- Update background position.
+    local screenW, screenH = love.graphics.getDimensions() -- Get current screen size.
+    self.interfaceBackground.x = screenW - 128
+    self.interfaceBackground.h = screenH
+
     -- Update buttons.
     for index, btn in pairs(self.buttons) do
         btn:update(dt)
@@ -59,22 +38,30 @@ function MapUI:update(scene, dt)
 end
 
 function MapUI:draw(scene)
-    -- Draw buttons.
-    for index, btn in pairs(self.buttons) do
-        btn:draw()
-    end
+    love.graphics.push("all")
+        -- Draw background.
+        love.graphics.setColor(132/255, 126/255, 135/255)
+        local bg = self.interfaceBackground
+        love.graphics.rectangle("fill", bg.x, bg.y, bg.w, bg.h)
 
-    -- Draw debug information.
-    local mX, mY = love.mouse.getPosition()
-    if (_G.debug) then
-        love.graphics.print(
-            "DEBUG INFORMATION: \n\n" ..
-            "FPS: " .. love.timer.getFPS() .. "\n\n" ..
-            "Mouse X: " .. mX .. "\n" ..
-            "Mouse Y: " .. mY .. "\n" ..
-            "Zoom scale: " .. scene.camera.scale, 
-        10, 10)
-    end
+        -- Draw buttons.
+        for index, btn in pairs(self.buttons) do
+            btn:draw()
+        end
+
+        -- Draw debug information.
+        local mX, mY = love.mouse.getPosition()
+        if (_G.debug) then
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.print(
+                "DEBUG INFORMATION: \n\n" ..
+                "FPS: " .. love.timer.getFPS() .. "\n\n" ..
+                "Mouse X: " .. mX .. "\n" ..
+                "Mouse Y: " .. mY .. "\n" ..
+                "Zoom scale: " .. scene.camera.scale, 
+            10, 10)
+        end
+    love.graphics.pop()
 end
 
 function MapUI:mousepressed(scene, x, y, button, istouch, presses)

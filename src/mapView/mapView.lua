@@ -17,7 +17,7 @@ function MapView:new()
     self.sceneName = "MapView"
 
     -- Grab mouse.
-    love.mouse.setGrabbed(true)
+    love.mouse.setGrabbed(false)
 
     -- Setup map camera.
     self.camera = {

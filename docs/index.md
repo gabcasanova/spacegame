@@ -1,2 +1,8 @@
 # StarFold
-Game design document by Gabriel Casanova.
+
+## A Universe Beyond Your Imagination.
+
+
+
+
+

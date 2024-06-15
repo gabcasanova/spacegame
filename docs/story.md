@@ -1,1 +1,15 @@
-# Test
+# Game Story
+
+DOS LIVROS DE HISTÓRIA... século XXIII
+
+Com o progresso e o avanço da humanidade, suas contradições começaram a ficar cada vez mais claras. A busca diária do homem pelo lucro o trouxe graves consequências, em detrimento não só do bem estar de seus companheiros, mas de seu futuro. As guerras climáticas foram, objetivamente, o pior período que a humanidade já passou. 
+
+As secas e o avanço do nível do mar trouxeram os diversos países do mundo a um estado de protecionismo e imperialismo. Os efeitos da crise climática pareciam piorar dia após dia e a superfice do planeta mudava para sempre. Territórios inteiros submersos, espécies extintas. A fome. Com seu individualismo inerente, o homem dominava seus irmãos e suas respectivas terras para garantir sua própria sobrevivência. Batatalhas de sangue, muito sangue, por um pedaço de carne. Disputas internacionais e mísseis nucleares, pelo pão e pela água. Somente cinco porcento da humanidade sobreviveu. O que restou? Grupos nomádicos e pequenos amontoados de pessoas em diferentes lugares do globo, com diferentes mílicias e forças regionais desorganizadas dominando seus territórios particulares em uma espécie de neofeudalismo. O conceito de estado-nação simplesmente deixou de existir nos vinte-e-poucos anos posteriores da guerra.
+
+A solução, de certo modo, veio com os Alguéns. Mesmo com todas as dificuldades da guerra, esse grupo de bioengenheiros conseguiram desenvolver algumas soluções que tornaram a vida no planeta um pouco mais palatável. Com a energia de fusão, era possível ter uma fonte de energia limpa que não produzia gases de efeito estufa. Isso não revertia nenhum dos efeitos das mudanças, mas era o início de um novo futuro. A grande revolução veio com os satélites de controle de clima, os "guarda-sóis", uma rede de grandes estruturas baseadas no espaço, posicionada em pontos estratégicos para reduzir a quantidade de energia solar que chegava à Terra; e os sistemas de ionização, que liberavam íons na atmosfera para influenciar os padrões climáticos, dissipando tempestades e incentivando chuvas em áreas atingidas pela seca. Eram pequenos, microscópicos, curativos para um problema muito maior. A vida na terra ainda tinha data de expiração, e essas invenções só davam um pouco mais tempo para o homem encontrar sua saída. Isso não impediu a extrema popularidade dos Alguéns.
+
+Eles eram vistos como santos e messias humanos, que deram para os homens uma segunda chance. Uma chance de começar de novo. Pouco a pouco, os Alguéns foram preenchendo o vácuo de poder que a humanidade passava, unindo todos os continentes do mundo sobre a imagem de um império global, totalitário e de ideologia tecno-utopista, isto é, o avanço tecnologico acima de tudo. 
+
+INSERIR:
+- os rebeldes
+- o início do programa espacial

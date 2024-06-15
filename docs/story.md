@@ -1,6 +1,6 @@
-# Game Story
+# 📚 Game Story
 
-DOS LIVROS DE HISTÓRIA... século XXIII
+***DOS LIVROS DE HISTÓRIA... século XXIII***
 
 Com o progresso e o avanço da humanidade, suas contradições começaram a ficar cada vez mais claras. A busca diária do homem pelo lucro o trouxe graves consequências, em detrimento não só do bem estar de seus companheiros, mas de seu futuro. As guerras climáticas foram, objetivamente, o pior período que a humanidade já passou. 
 

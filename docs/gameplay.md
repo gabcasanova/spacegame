@@ -20,6 +20,10 @@ O oficial de defesa é o chefe militar da nave. Ele sugere ações militares ao 
 
 *A perspectiva do oficial de defesa tende a ser mais autoritária.*
 
+#### Oficial de Comunicações
+O oficial de comunicações é responsável de manter o contato do jogador com o planeta na qual ele está tentando manter contato.
+* **Caso o jogador entre na órbita de um planeta**, ele precisará pedir ao oficial de comunicações se comunicar com o planeta e pedir para aterrissar. Se isso não for feito, guerra espacial imediata acontecerá pois será considerada uma invasão. A autorização ou não dependerá da personalidade da raça alienígena.
+
 ## 🌎 Planeta
 
 ### Variáveis

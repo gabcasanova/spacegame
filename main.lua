@@ -1,7 +1,6 @@
--- Import scenes.
-local MapView   = require("src.mapView.mapView")
-local SpaceView = require("src.spaceView.spaceView")
-----------------------------------------------------
+-- Import scripts.
+local SceneSelector = require("src.sceneSelector")
+--------------------------------------------------
 
 function love.load()
     -- Set game variables.
@@ -12,7 +11,8 @@ function love.load()
     -- Load game assets.
     _G.gameAsssets = {
         fonts = {
-            genericFont = love.graphics.newFont(15)
+            genericFont = love.graphics.newFont(15),
+            chicago = love.graphics.newFont("assets/fonts/ChicagoFLF.ttf", 16)
         },
         graphics = {
             -- UI.
@@ -32,7 +32,7 @@ function love.load()
     }
 
     -- Set the current scene.
-    _G.currentScene = SpaceView()
+    _G.currentScene = SceneSelector()
 end
 
 function love.update(dt)
@@ -51,6 +51,7 @@ function love.mousepressed(x, y, button, istouch, presses)
 end
 
 function love.keypressed(key, scancode, isrepeat)
+    -- Global keys.
     if (key == "escape") then
         -- Quit game.
         love.event.quit()
@@ -62,6 +63,9 @@ function love.keypressed(key, scancode, isrepeat)
         _G.currentScene = MapView()
         collectgarbage("collect")
     end
+
+    -- Update scene keypress.
+    _G.currentScene:keypressed(key, scancode, isrepeat)
 end
 
 function love.resize(w, h)

@@ -6,3 +6,4 @@
 ---
 
 📚 Access StarFold's Game Design Document [here!](docs/index.md)
+📜 [Credits](docs/credits.md)

@@ -9,6 +9,6 @@
 1. 💡 Inspirations
 2. 💾 Tech Requirements
 3. [📚 Game Story](story.md)
-4. 🎮 Gameplay
+4. [🎮 Gameplay](gameplay.md)
 5. 🔝 USPs
 6. 📋 To-Do List

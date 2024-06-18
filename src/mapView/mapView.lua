@@ -100,4 +100,8 @@ function MapView:resize(w, h)
     self.background:setWrap("mirroredrepeat", "mirroredrepeat")
 end
 
+function MapView:mousemoved(x, y, dx, dy)
+    -- Update mouse movement.
+end
+
 return MapView

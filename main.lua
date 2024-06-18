@@ -1,6 +1,7 @@
--- Import scripts.
-local MapView = require("src.mapView.mapView")
-----------------------------------------------
+-- Import scenes.
+local MapView   = require("src.mapView.mapView")
+local SpaceView = require("src.spaceView.spaceView")
+----------------------------------------------------
 
 function love.load()
     -- Set game variables.
@@ -26,7 +27,7 @@ function love.load()
     }
 
     -- Set the current scene.
-    _G.currentScene = MapView()
+    _G.currentScene = SpaceView()
 end
 
 function love.update(dt)
@@ -61,4 +62,9 @@ end
 function love.resize(w, h)
     -- Resize current scene.
     _G.currentScene:resize(w, h)
+end
+
+function love.mousemoved(x, y, dx, dy)
+    -- Update mouse movement.
+    _G.currentScene:mousemoved(x, y, dx, dy)
 end

@@ -15,14 +15,19 @@ function love.load()
             genericFont = love.graphics.newFont(15)
         },
         graphics = {
-            zoomButtons = love.graphics.newImage("assets/ui/zoomButtons.png"),
-            tyrannyDiplomacy = love.graphics.newImage("assets/ui/tyrannyDiplomacy.png"),
+            -- UI.
+            zoomButtons = love.graphics.newImage("assets/graphics/ui/zoomButtons.png"),
+            tyrannyDiplomacy = love.graphics.newImage("assets/graphics/ui/tyrannyDiplomacy.png"),
 
-            spaceBackground = love.graphics.newImage("assets/spaceBackground.png"),
-            terrain = love.graphics.newImage("assets/terrain.png"),
-            isoCube = love.graphics.newImage("assets/isoCube.png"),
-            tile    = love.graphics.newImage("assets/tile.png"),
-            militaryDeposit = love.graphics.newImage("assets/militaryDeposit.png")
+            -- Planets.
+            spaceBackground = love.graphics.newImage("assets/graphics/skies/dirtPlanetSky.png"),
+            terrain = love.graphics.newImage("assets/graphics/terrains/dirtPlanetTerrain.png"),
+            
+
+            -- Buildings.
+            isoCube = love.graphics.newImage("assets/graphics/buildings/isoCube.png"),
+            tile    = love.graphics.newImage("assets/graphics/buildings/tile.png"),
+            militaryDeposit = love.graphics.newImage("assets/graphics/buildings/militaryDeposit.png")
         }
     }
 

@@ -38,11 +38,15 @@ function SpaceView:draw()
 end
 
 function SpaceView:mousepressed(x, y, button, istouch, presses)
-    
+    --
+end
+
+function SpaceView:keypressed(key, scancode, isrepeat)
+    --
 end
 
 function SpaceView:resize(w, h)
-    
+    --
 end
 
 function SpaceView:mousemoved(x, y, dx, dy)

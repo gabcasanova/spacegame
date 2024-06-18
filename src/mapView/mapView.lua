@@ -94,6 +94,10 @@ function MapView:mousepressed(x, y, button, istouch, presses)
     self.ui:mousepressed(self, x, y, button, istouch, presses)
 end
 
+function MapView:keypressed(key, scancode, isrepeat)
+    
+end
+
 function MapView:resize(w, h)
     -- Resize background according to screen size.
     self.backgroundQuad = love.graphics.newQuad(0, 0, w, h, self.background)

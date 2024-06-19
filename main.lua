@@ -12,10 +12,12 @@ function love.load()
     _G.gameAsssets = {
         fonts = {
             genericFont = love.graphics.newFont(15),
-            chicago = love.graphics.newFont("assets/fonts/ChicagoFLF.ttf", 16)
+            chicago = love.graphics.newFont("assets/fonts/ChicagoFLF.ttf", 16),
+            bigChicago = love.graphics.newFont("assets/fonts/ChicagoFLF.ttf", 36),
         },
         graphics = {
             -- UI.
+            debugBackground = love.graphics.newImage("assets/graphics/ui/debugBackground.png"),
             zoomButtons = love.graphics.newImage("assets/graphics/ui/zoomButtons.png"),
             tyrannyDiplomacy = love.graphics.newImage("assets/graphics/ui/tyrannyDiplomacy.png"),
 
@@ -58,9 +60,9 @@ function love.keypressed(key, scancode, isrepeat)
     elseif (key == "q") then
         -- Deactivate debug.
         if (_G.debug) then _G.debug = false else _G.debug = true end
-    elseif (key == "r") then
+    elseif (key == "home") then
         -- Restart scene.
-        _G.currentScene = MapView()
+        _G.currentScene = SceneSelector()
         collectgarbage("collect")
     end
 

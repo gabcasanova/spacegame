@@ -50,7 +50,7 @@ function SpaceView:resize(w, h)
 end
 
 function SpaceView:mousemoved(x, y, dx, dy)
-    --g3d.camera.firstPersonLook(dx,dy)
+    g3d.camera.firstPersonLook(dx,dy)
 end
 
 return SpaceView

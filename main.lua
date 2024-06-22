@@ -24,7 +24,6 @@ function love.load()
             -- Planets.
             spaceBackground = love.graphics.newImage("assets/graphics/skies/dirtPlanetSky.png"),
             terrain = love.graphics.newImage("assets/graphics/terrains/dirtPlanetTerrain.png"),
-            
 
             -- Buildings.
             isoCube = love.graphics.newImage("assets/graphics/buildings/isoCube.png"),

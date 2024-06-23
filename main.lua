@@ -32,6 +32,21 @@ function love.load()
         }
     }
 
+    -- Set keybinds.
+    _G.gameKeybind = {
+        ship = {
+            moveForward  = "w",
+            moveBackward = "s",
+            moveLeft     = "a",
+            moveRight    = "d",
+
+            turnLeft     = "left",
+            turnRight    = "right",
+            turnUp       = "up",
+            turnDown     = "down",
+        }
+    }
+
     -- Set the current scene.
     _G.currentScene = SceneSelector()
 end

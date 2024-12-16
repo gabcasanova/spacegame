@@ -1,6 +1,7 @@
 -- Import libraries.
-local g3d = require("libs.g3d")
 local Object = require('libs.classic')
+local g3d = require("libs.g3d")
+local flux = require("libs.flux")
 --------------------------------------
  
 local Spaceship = Object:extend()
@@ -18,8 +19,15 @@ function Spaceship:new(scene)
 end
 
 function Spaceship:update(scene, dt)
+    flux.update(dt)
+
     local isDown = love.keyboard.isDown
     local bind = _G.gameKeybind.ship
+
+    local maxPitch = 1.55
+    if (self.pitch > maxPitch or self.pitch < -maxPitch) then
+        flux.to(self, 1, {pitch = -self.pitch+1, direction = -self.direction})
+    end
 
     -- Keyboard controls.
     self.moveSpeed = 0

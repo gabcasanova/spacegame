@@ -1,5 +1,12 @@
 {
-    "Lua.diagnostics.globals": [
-        "love"
-    ]
+	"Lua.diagnostics.globals": [
+		"love"
+	],
+	"files.eol": "\n",
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
+	"files.trimTrailingWhitespace": false,
+	"files.trimFinalNewlines": false,
+	"editor.formatOnSave": true,
 }

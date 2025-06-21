@@ -2,11 +2,15 @@
 	"Lua.diagnostics.globals": [
 		"love"
 	],
+	"Lua.workspace.ignoreDir": [
+		"old_versions",
+		"libs",
+	],
 	"files.eol": "\n",
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
 	"editor.detectIndentation": false,
 	"files.trimTrailingWhitespace": false,
 	"files.trimFinalNewlines": false,
-	"editor.formatOnSave": true,
+	"editor.formatOnSave": true
 }

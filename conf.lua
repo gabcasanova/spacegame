@@ -1,4 +1,6 @@
 function love.conf(t)
+	t.version = "11.5"
+
 	t.window.title = "SPACE GAME"
 
 	t.window.width = 1152

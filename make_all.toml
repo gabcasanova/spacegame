@@ -1,0 +1,17 @@
+name = "Game"
+default_targets = ["win64", "macos"]
+build_directory = "bin"
+love_files = [
+	#ignore hidden folders
+	"+*",
+	"-*/.*",
+
+	#ignore dev folders
+	"-*/bin/**",
+	"-*/docs/**",
+	"-*/old_versions/**",
+
+	#ignore config files
+	"-*/make_all.toml",
+	"-*/spacegame.code-workspace",
+]

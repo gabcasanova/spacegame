@@ -9,7 +9,8 @@
 		"cSpell.enabled": true,
 		"cSpell.language": "en,pt,pt-BR",
 		"cSpell.enabledFileTypes": {
-			"lua": false
+			"lua": false,
+			"toml": false
 		}
 	},
 	// Run & Debug configuration.

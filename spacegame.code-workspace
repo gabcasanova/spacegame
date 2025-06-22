@@ -5,7 +5,42 @@
 		}
 	],
 	"settings": {
+		// Spell checking.
 		"cSpell.enabled": true,
-		"cSpell.language": "en,pt,pt-BR"
+		"cSpell.language": "en,pt,pt-BR",
+		"cSpell.enabledFileTypes": {
+			"lua": false
+		}
+	},
+	// Run & Debug configuration.
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			// Debug Runner
+			{
+				"type": "lua-local",
+				"request": "launch",
+				"name": "Debug",
+				"program": {
+					"command": "love"
+				},
+				"args": [
+					".",
+					"debug"
+				],
+			},
+			// Release Runner
+			{
+				"type": "lua-local",
+				"request": "launch",
+				"name": "Release",
+				"program": {
+					"command": "love"
+				},
+				"args": [
+					".",
+				],
+			},
+		]
 	}
 }

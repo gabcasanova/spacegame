@@ -1,11 +1,21 @@
 {
+	// Lua language server configuration.
+	"Lua.runtime.version": "LuaJIT",
 	"Lua.diagnostics.globals": [
 		"love"
 	],
+	"Lua.workspace.library": [
+		"${3rd}/love2d/library"
+	],
+	"Lua.workspace.checkThirdParty": false,
+
+	// Exclude folders.
 	"Lua.workspace.ignoreDir": [
 		"old_versions",
 		"libs",
 	],
+	
+	// Auto-formatting configuration.
 	"files.eol": "\n",
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
